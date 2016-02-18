@@ -1,0 +1,49 @@
+<html>
+  <head>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  </head>
+  <body>
+    <div class="feature-toggle">
+      <h1>Features</h1>
+
+      <table class="table table-bordered">
+        <thead>
+          <th class="name">Feature Name</th>
+          <th class="description">Description</th>
+          <th class="status">Status</th>
+          <th>Database (for all users)</th>
+          <th>Default setting</th>
+        </thead>
+        <tbody>
+          <% @p.definitions.each do |definition| %>
+            <tr>
+               <td class="name"><%= definition['name'] %></td>
+               <td class="description"><%= definition['desc'] %></td>
+               <td class="status"><%= @p.status definition %></td>
+               <% @p.strategies.each do |strategy| %>
+                 <td class="status">
+                   <% if strategy.switchable? %>
+                     <%= form_tag(@p.switch_url(strategy, definition), method: :put) do %>
+                       <% unless @p.strategy_status(strategy, definition) == "on" %>
+                         <%= submit_tag "Switch On" %>
+                       <% end %>
+                       <% unless @p.strategy_status(strategy, definition) == "off" %>
+                         <%= submit_tag "Switch Off" %>
+                       <% end %>
+                     <% end %>
+                   <% end %>
+                   <% unless @p.strategy_status(strategy, definition).blank? %>
+                     <%= form_tag(@p.switch_url(strategy, definition), method: :delete) do %>
+                       <%= submit_tag "Delete" %>
+                     <% end %>
+                   <% end %>
+                 </td>
+               <% end %>
+               <td class="default"><%= @p.default_status definition %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
