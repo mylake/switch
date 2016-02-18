@@ -4,7 +4,6 @@ module Switch
   class FeaturesController < ApplicationController
 
     def index
-      # return unless Settings['features']
       @p = FeaturesPresenter.new(Switch::FeatureSet.instance)
     end
 

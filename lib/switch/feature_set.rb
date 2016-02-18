@@ -9,8 +9,7 @@ module Switch
     end
 
     def initialize
-      # @definitions =  Settings['features']
-      @definitions =  {"ilake_1"=>{"desc"=>"desc1", "open"=>true}, "ilake_2"=>{"desc"=>"desc2", "open"=>false}}
+      @definitions =  Switch::YamlRepository.new("#{Rails.root}/config/feature.yml").get_features_setting
 
       @definitions.each do |k, v|
         @definitions[k] = v.merge({name: k}.stringify_keys)
@@ -34,6 +33,7 @@ module Switch
     end
 
     def definitions
+      return [] if @definitions.empty?
       @definitions.values
     end
 
