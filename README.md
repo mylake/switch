@@ -17,8 +17,15 @@ require 'feature'
 
 ```ruby
 features:
-  ilake_1: {desc: 'desc1', open: true}
-  ilake_2: {desc: 'desc2', open: false}
+  feature_1: {desc: 'desc1', open: true}
+  feature_2: {desc: 'desc2', open: false}
+```
+## Checking Features
+
+Switch.on? is used to check feature state:
+
+```ruby
+Flip.on? :feature_1   # true
 ```
 
 ## License
