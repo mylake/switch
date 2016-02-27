@@ -21,11 +21,11 @@ module Switch
       @strategies.each_value do |st|
         return st.on?(definition) if st.knows?(definition)
       end
-      definition['open']
+      default_for definition
     end
 
     def default_for definition
-      definition['open']
+      @definitions[definition['name'].to_s]
     end
 
     def strategy(klass)
