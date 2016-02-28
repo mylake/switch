@@ -25,7 +25,14 @@ features:
 Switch.on? is used to check feature state:
 
 ```ruby
-Flip.on? :feature_1   # true
+Switch.on? :feature_1   # true
+```
+
+You can switch your feature on:
+
+```ruby
+url+'/switch/features'
+ex: http://localhost:3000/switch/features
 ```
 
 ## License
