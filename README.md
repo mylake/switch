@@ -11,6 +11,9 @@ rails g switch:install
 rake db:migrate
 # Include the Feature model, e.g. config/initializers/feature.rb:
 require 'feature'
+
+Switch::Setting.set_source("#{Rails.root}/config/custom_path.yml")
+# if not set, default path => "#{Rails.root}/config/feature.yml"
 ```
 
 ## Declaring Features
@@ -20,6 +23,7 @@ features:
   feature_1: {desc: 'desc1', open: true}
   feature_2: {desc: 'desc2', open: false}
 ```
+
 ## Checking Features
 
 Switch.on? is used to check feature state:

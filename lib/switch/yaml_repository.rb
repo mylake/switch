@@ -1,4 +1,16 @@
 module Switch
+
+  # Setting for custom set the filepath of config
+  # Switch will auto catch the settings, default path is "#{Rails.root}/config/feature.yml"
+  class Setting
+    def self.set_source(source)
+      @@switch_setting_path = source if source.is_a?(String)
+    end
+
+    def self.path
+      @@switch_setting_path || "#{Rails.root}/config/feature.yml"
+    end
+  end
   # YamlRepository for active and inactive features
   # The yaml config file should look like this:
   #
