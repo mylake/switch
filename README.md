@@ -14,14 +14,24 @@ require 'feature'
 
 Switch::Setting.set_source("#{Rails.root}/config/custom_path.yml")
 # if not set, default path => "#{Rails.root}/config/feature.yml"
+Switch::Setting.set_namespace('development')
+# you could set any namespace
 ```
 
 ## Declaring Features
 
 ```ruby
+#no namespace
 features:
   feature_1: {desc: 'desc1', open: true}
   feature_2: {desc: 'desc2', open: false}
+
+#have namespace(develpoment)
+development:
+  features:
+    feature_1: {desc: 'desc1', open: true}
+    feature_2: {desc: 'desc2', open: false}
+
 ```
 
 ## Checking Features
