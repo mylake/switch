@@ -20,7 +20,4 @@ require "switch/engine" if defined?(Rails)
 
 module Switch
   extend Facade
-
-  # @repository = Switch::YamlRepository.new("#{Rails.root}/config/feature.yml").get_features_setting
-
 end

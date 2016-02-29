@@ -1,4 +1,4 @@
-require_dependency "switch/application_controller"
+require_dependency 'switch/application_controller'
 
 module Switch
   class StrategiesController < ApplicationController

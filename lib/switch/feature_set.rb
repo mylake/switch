@@ -9,7 +9,7 @@ module Switch
     end
 
     def initialize
-      @definitions =  Switch::YamlRepository.new("#{Rails.root}/config/feature.yml").get_features_setting
+      @definitions =  Switch::YamlRepository.new(Switch::Setting.path).get_features_setting
 
       @definitions.each do |k, v|
         @definitions[k] = v.merge({name: k}.stringify_keys)
@@ -25,7 +25,9 @@ module Switch
     end
 
     def default_for definition
-      @definitions[definition['name'].to_s]
+      d = @definitions[definition['name'].to_s]
+      return false unless d
+      d['open']
     end
 
     def strategy(klass)

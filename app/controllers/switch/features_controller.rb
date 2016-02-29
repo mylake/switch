@@ -25,12 +25,12 @@ module Switch
       end
 
       def default_status(feature)
-        @feature_set.default_for(feature['name']) ? "on" : "off"
+        @feature_set.default_for(feature) ? 'on' : 'off'
       end
 
       def strategy_status(strategy, definition)
         if strategy.knows? definition
-          strategy.on?(definition) ? "on" : "off"
+          strategy.on?(definition) ? 'on' : 'off'
         end
       end
 
